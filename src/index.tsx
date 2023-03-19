@@ -2,7 +2,7 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-18 20:10:43
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-18 22:19:39
+ * @LastEditTime: 2023-03-19 13:25:11
  * @FilePath: /shop/src/index.tsx
  * @Description:
  *
@@ -13,10 +13,18 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+// Themes
+
 // 引入styled-componet 全局样式
 import { theme } from "@/commons/style/theme";
 // 引入styled样式依赖组件
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "@/commons/style/styled-components";
+
+import GlobalStyle from "@/commons/style/global-style";
+
+// Context Provider
+import { ProductsProvider } from "./contexts/product-context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -24,7 +32,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+      <GlobalStyle />
+      <ProductsProvider>
+        <App />
+      </ProductsProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
