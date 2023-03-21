@@ -2,16 +2,15 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-18 20:10:43
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-19 13:25:11
+ * @LastEditTime: 2023-03-19 15:45:18
  * @FilePath: /shop/src/index.tsx
  * @Description:
  *
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
 import React from "react";
-import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import App from "@/components/App";
 import reportWebVitals from "./reportWebVitals";
 
 // Themes
@@ -25,16 +24,20 @@ import GlobalStyle from "@/commons/style/global-style";
 
 // Context Provider
 import { ProductsProvider } from "./contexts/product-context";
+import { CartProvider } from './contexts/cart-context/index';
+import * as ReactDOMClient from 'react-dom/client';
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
+
+const root = document.getElementById('root')!;
+const container = ReactDOMClient.createRoot(root);
+container.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <ProductsProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </ProductsProvider>
     </ThemeProvider>
   </React.StrictMode>

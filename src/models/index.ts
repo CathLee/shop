@@ -2,7 +2,7 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-19 10:38:51
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-19 13:05:34
+ * @LastEditTime: 2023-03-19 13:52:21
  * @FilePath: /shop/src/models/index.ts
  * @Description: interface集合
  *
@@ -27,3 +27,17 @@ export interface IGetProductsResponse {
     products: IProduct[];
   };
 }
+
+// 购物车模型
+export interface ICartProduct extends IProduct {
+  quantity: number;
+}
+
+export interface ICartTotal {
+  productQuantity: number;
+  installments: number;
+  totalPrice: number;
+  currencyId: string;
+  currencyFormat: string;
+}
+

@@ -2,13 +2,14 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-19 10:33:15
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-19 13:21:06
+ * @LastEditTime: 2023-03-19 15:42:54
  * @FilePath: /shop/src/contexts/product-context/ProductsContextProvider.tsx
  * @Description: 商品组件
  *
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
 import React from 'react'
+import { ReactNode } from 'react';
 import { createContext, FC, useContext, useState } from "react";
 
 import { IProduct } from "@/models";
@@ -20,6 +21,12 @@ export interface IProductsContext {
   setProducts(products: IProduct[]): void;
   filters: string[];
   setFilters(filters: string[]): void;
+}
+
+
+
+interface IProductsProviderProps {
+  children?: ReactNode;
 }
 
 const ProductsContext = createContext<IProductsContext | undefined>(undefined);
@@ -35,7 +42,7 @@ const useProductsContext = (): IProductsContext => {
   return context;
 };
 
-const ProductsProvider: FC = (props) => {
+const ProductsProvider: FC<IProductsProviderProps> = ({children},props) => {
   const [isFetching, setIsFetching] = useState(false);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [filters, setFilters] = useState<string[]>([]);
@@ -48,7 +55,7 @@ const ProductsProvider: FC = (props) => {
     filters,
     setFilters,
   };
-  return <ProductsContext.Provider value={ProductContextValue} {...props} />;
+  return <ProductsContext.Provider value={ProductContextValue} {...props}>{children}</ProductsContext.Provider>
 };
 
 export {ProductsProvider,useProductsContext}
