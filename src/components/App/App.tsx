@@ -2,7 +2,7 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-19 14:14:07
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-19 15:25:49
+ * @LastEditTime: 2023-03-21 21:39:22
  * @FilePath: /shop/src/components/App/App.tsx
  * @Description:
  *
@@ -12,7 +12,9 @@
 // import { useProducts } from "@/contexts/product-context";
 import React, { useEffect } from "react";
 import * as S from "./style";
-import Products from '@/components/Products'
+import Products from "@/components/Products";
+import { GithubCorner, GithubStarButton } from "@/components/Github";
+import Loader from "@/components/Loader";
 import { useProducts } from "@/contexts/product-context";
 function App() {
   const { isFetching, products, fetchProducts } = useProducts();
@@ -22,13 +24,17 @@ function App() {
 
   return (
     <S.Container>
+      {isFetching && <Loader />}
+      <GithubCorner />
       <S.TwoColumnGrid>
-        <S.Side></S.Side>
+        <S.Side>
+          <GithubStarButton />
+        </S.Side>
         <S.Main>
-            <S.MainHeader>
+          <S.MainHeader>
             <p>{products?.length} Product(s) found</p>
-            </S.MainHeader>
-            <Products products={products} />
+          </S.MainHeader>
+          <Products products={products} />
         </S.Main>
       </S.TwoColumnGrid>
     </S.Container>
