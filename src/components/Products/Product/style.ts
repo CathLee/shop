@@ -2,7 +2,7 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-28 22:24:35
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-28 22:41:24
+ * @LastEditTime: 2023-03-30 22:02:26
  * @FilePath: /shop/src/components/Products/Product/style.ts
  * @Description:
  *
@@ -82,4 +82,56 @@ export const Contianer = styled.div<IContainer>`
     ${BuyButton} {
         background-color: ${({ theme }) => theme.colors.secondary};
       }
+`;
+
+export const Stopper = styled.div`
+  position: absolute;
+  color: #ececec;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  font-size: 0.6em;
+  background-color: ${({ theme }) => theme.colors.primary};
+  cursor: default;
+  z-index: 1;
+`;
+
+export const Title = styled.p`
+  position: relative;
+  padding: 0 20px;
+  height: 45px;
+  &::before {
+    content: "";
+    width: 20px;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -10px;
+  }
+`;
+
+export const Price = styled.div`
+  height: 60px;
+
+  .val {
+    b {
+      font-size: 1.5em;
+      margin-left: 5px;
+    }
+  }
+`;
+
+export const Val = styled.p`
+  margin: 0;
+  b {
+    font-size: 1.5em;
+    margin-left: 5px;
+  }
+`;
+
+export const Installment = styled.p`
+  margin: 0;
+  color: #9c9b9b;
 `;
