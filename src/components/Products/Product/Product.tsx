@@ -2,7 +2,7 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-28 22:24:27
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-30 22:22:54
+ * @LastEditTime: 2023-03-31 20:57:42
  * @FilePath: /shop/src/components/Products/Product/Product.tsx
  * @Description:
  *
@@ -42,12 +42,15 @@ export const Product = ({ product }: IProps) => {
     );
   }
 
-  const handleAddProduct = ()=>{
-    
-  }
+  const handleAddProduct = () => {};
+
+  const handleAddProductWhenEnter = (event: KeyboardEvent) => {
+    if (event.key === "Enter" || event.code === "Space") {
+    }
+  };
 
   return (
-    <S.Contianer tabIndex={1} sku={sku}>
+    <S.Contianer onKeyUp={handleAddProductWhenEnter} tabIndex={1} sku={sku}>
       {isFreeShipping && <S.Stopper>Free shipping</S.Stopper>}
       <S.Title>{title}</S.Title>
       <S.Price>
@@ -58,9 +61,7 @@ export const Product = ({ product }: IProps) => {
         </S.Val>
         {productInstallment}
       </S.Price>
-      <S.BuyButton onClick={handleAddProduct} tabIndex={-1}>
-
-      </S.BuyButton>
+      <S.BuyButton onClick={handleAddProduct} tabIndex={-1}></S.BuyButton>
     </S.Contianer>
   );
 };
