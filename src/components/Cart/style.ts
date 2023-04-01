@@ -68,7 +68,8 @@ export const CartIcon = styled.div<ICartIcon>`
   margin-right: 15px;
   background-image: url(${require('src/static/cart-icon.png')});
   background-repeat: no-repeat;
-  background-size: contain;
+  background-si
+  ze: contain;
   background-position: center;
 
   background-size: 50%;
