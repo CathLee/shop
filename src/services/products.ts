@@ -2,7 +2,7 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-19 12:54:50
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-19 15:29:13
+ * @LastEditTime: 2023-04-01 18:06:38
  * @FilePath: /shop/src/services/products.ts
  * @Description:
  *
@@ -20,7 +20,7 @@ export const getProducts = async () => {
       "https://react-shopping-cart-67954.firebaseio.com/products.json"
     );
   } else {
-    response = require("@/static/json/products.json");
+    response = require("src/static/json/products.json");
   }
 
   const { products } = response.data || [];

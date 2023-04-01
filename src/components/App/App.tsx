@@ -2,7 +2,7 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-19 14:14:07
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-23 20:32:16
+ * @LastEditTime: 2023-04-01 17:50:19
  * @FilePath: /shop/src/components/App/App.tsx
  * @Description:
  *
@@ -16,6 +16,7 @@ import Products from "@/components/Products";
 import { GithubCorner, GithubStarButton } from "@/components/Github";
 import Loader from "@/components/Loader";
 import Filter from "@/components/Filter";
+import Cart from '@/components/Cart';
 import { useProducts } from "@/contexts/product-context";
 function App() {
   const { isFetching, products, fetchProducts } = useProducts();
@@ -39,6 +40,7 @@ function App() {
           <Products products={products} />
         </S.Main>
       </S.TwoColumnGrid>
+       <Cart />
     </S.Container>
   );
 }
