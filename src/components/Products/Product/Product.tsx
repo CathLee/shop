@@ -2,21 +2,30 @@
  * @Author: cathylee 447932704@qq.com
  * @Date: 2023-03-28 22:24:27
  * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-31 20:57:42
+ * @LastEditTime: 2023-04-01 12:18:26
  * @FilePath: /shop/src/components/Products/Product/Product.tsx
  * @Description:
  *
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
+import React, { KeyboardEvent } from "react";
+
+
 import { IProduct } from "@/models";
-import React from "react";
+    
+
+
+
 import * as S from "./style";
 import { formatPrice } from "@/utils/formatPrice";
+import { useCart } from "@/contexts/cart-context/useCart";
+
 interface IProps {
   product: IProduct;
 }
 
-export const Product = ({ product }: IProps) => {
+const Product = ({ product }: IProps) => {
+  const { openCart, addProduct } = useCart();
   const {
     sku,
     title,
@@ -29,8 +38,10 @@ export const Product = ({ product }: IProps) => {
 
   const formattedPrice = formatPrice(price, currencyId);
   let productInstallment;
+
   if (installments) {
     const installmentPrice = price / installments;
+
     productInstallment = (
       <S.Installment>
         <span>or {installments} x</span>
@@ -42,26 +53,36 @@ export const Product = ({ product }: IProps) => {
     );
   }
 
-  const handleAddProduct = () => {};
+  const handleAddProduct = () => {
+    addProduct({ ...product, quantity: 1 });
+    openCart();
+  };
 
   const handleAddProductWhenEnter = (event: KeyboardEvent) => {
     if (event.key === "Enter" || event.code === "Space") {
+      addProduct({ ...product, quantity: 1 });
+      openCart();
     }
   };
 
   return (
-    <S.Contianer onKeyUp={handleAddProductWhenEnter} tabIndex={1} sku={sku}>
+    <S.Container onKeyUp={handleAddProductWhenEnter} sku={sku} tabIndex={1}>
       {isFreeShipping && <S.Stopper>Free shipping</S.Stopper>}
+      <S.Image alt={title} />
       <S.Title>{title}</S.Title>
       <S.Price>
         <S.Val>
           <small>{currencyFormat}</small>
           <b>{formattedPrice.substring(0, formattedPrice.length - 3)}</b>
-          <span>{formattedPrice.substring(0, formattedPrice.length - 3)}</span>
+          <span>{formattedPrice.substring(formattedPrice.length - 3)}</span>
         </S.Val>
         {productInstallment}
       </S.Price>
-      <S.BuyButton onClick={handleAddProduct} tabIndex={-1}></S.BuyButton>
-    </S.Contianer>
+      <S.BuyButton onClick={handleAddProduct} tabIndex={-1}>
+        Add to cart
+      </S.BuyButton>
+    </S.Container>
   );
 };
+
+export default Product;

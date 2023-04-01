@@ -1,24 +1,4 @@
-/*
- * @Author: cathylee 447932704@qq.com
- * @Date: 2023-03-28 22:24:35
- * @LastEditors: cathylee 447932704@qq.com
- * @LastEditTime: 2023-03-30 22:02:26
- * @FilePath: /shop/src/components/Products/Product/style.ts
- * @Description:
- *
- * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
- */
-import styled from "styled-components";
-
-interface IContainer {
-  sku: number | string;
-}
-
-interface IImage {
-  alt: number | string;
-}
-
-export const Image = styled.div<IImage>``;
+import styled from 'styled-components/macro';
 
 export const BuyButton = styled.button`
   background-color: ${({ theme }) => theme.colors.primary};
@@ -36,7 +16,15 @@ export const BuyButton = styled.button`
   }
 `;
 
-export const Contianer = styled.div<IContainer>`
+interface IImage {
+  alt: string;
+}
+export const Image = styled.div<IImage>``;
+
+interface IContainer {
+  sku: number | string;
+}
+export const Container = styled.div<IContainer>`
   position: relative;
   text-align: center;
   box-sizing: border-box;
@@ -54,34 +42,37 @@ export const Contianer = styled.div<IContainer>`
     height: 270px;
     position: relative;
     background-image: ${({ sku }) =>
-      `url(${require(`static/products/${sku}-1-product.webp`)})`};
-    background-repeat:no-repeat;
-    background-size:cover;
-    background-position:center;
-    ::before{
-        content:'',
-        display:block;
-        position:absolute;
-        background:#eee;
-        width:100%;
-        height:100%;
-        z-index:-1;
-        }
-        @media only screen and(min-width:${({ theme: { breakpoints } }) =>
-          breakpoints.tablet}){
-            height:320px;
-        }
+      `url(${require(`src/static/products/${sku}-1-product.webp`)})`};
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    ::before {
+      content: '';
+      display: block;
+      position: absolute;
+      background: #eee;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
 
-    $:hover{
-        ${Image}{
-            background-image:${({ sku }) =>
-              `url(${require(`static/products/${sku}-2-product.webp`)})`};
-        }
+    @media only screen and (min-width: ${({ theme: { breakpoints } }) =>
+        breakpoints.tablet}) {
+      height: 320px;
     }
+  }
+
+  &:hover {
+    ${Image} {
+      background-image: ${({ sku }) =>
+        `url(${require(`src/static/products/${sku}-2-product.webp`)})`};
+    }
+
     ${BuyButton} {
-        background-color: ${({ theme }) => theme.colors.secondary};
-      }
+      background-color: ${({ theme }) => theme.colors.secondary};
+    }
+  }
 `;
 
 export const Stopper = styled.div`
@@ -100,8 +91,9 @@ export const Title = styled.p`
   position: relative;
   padding: 0 20px;
   height: 45px;
+
   &::before {
-    content: "";
+    content: '';
     width: 20px;
     height: 2px;
     background-color: ${({ theme }) => theme.colors.secondary};
